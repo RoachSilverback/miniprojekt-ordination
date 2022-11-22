@@ -25,7 +25,13 @@ public class DagligFast : Ordination {
 
 	public override double doegnDosis() {
 		// TODO: Implement!
-        return -1;
+		Dosis[] doser = getDoser();
+		double doserSum = 0;
+		for (int i = 0; i < getDoser().Length; i++)
+		{
+			doserSum = doserSum + doser[i].antal;
+		}
+		return doserSum;
 	}
 	
 	public Dosis[] getDoser() {
