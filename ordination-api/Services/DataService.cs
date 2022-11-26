@@ -150,7 +150,13 @@ public class DataService
 
     public string AnvendOrdination(int id, Dato dato) {
         // TODO: Implement!
-        return null!;
+        var ordKontrol = db.PNs.FirstOrDefault(o => o.OrdinationId == id);
+        if (ordKontrol.givDosis(dato) == true){
+            ordKontrol.dates.Add(dato);
+            db.SaveChanges();
+            return "Ordinationen er blevet anvendt";
+        }
+        else return "Ordinationen kunne ikke anvendes.. Kontroller dato";
     }
 
     /// <summary>
@@ -162,7 +168,16 @@ public class DataService
     /// <returns></returns>
 	public double GetAnbefaletDosisPerDøgn(int patientId, int laegemiddelId) {
         // TODO: Implement!
-        return -1;
+        var patient = db.Patienter.FirstOrDefault(p => p.PatientId == patientId);
+        var medicin = db.Laegemiddler.FirstOrDefault(l => l.LaegemiddelId == laegemiddelId);
+        if (patient.vaegt < 25){
+            return medicin.enhedPrKgPrDoegnLet;
+        }
+        else if (25 <= patient.vaegt && patient.vaegt <= 120)
+        {
+            return medicin.enhedPrKgPrDoegnNormal;
+        }
+        else return medicin.enhedPrKgPrDoegnTung;
 	}
     
 }

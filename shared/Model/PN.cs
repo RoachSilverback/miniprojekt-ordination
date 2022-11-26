@@ -18,12 +18,16 @@ public class PN : Ordination {
     /// </summary>
     public bool givDosis(Dato givesDen) {
         // TODO: Implement!
+        if (givesDen.dato < slutDen && givesDen.dato > startDen)
+        {
+            return true;
+        }
         return false;
     }
 
     public override double doegnDosis() {
     	// TODO: Implement!
-        return -1;
+        return (getAntalGangeGivet() * antalEnheder) / antalDage();
     }
 
 

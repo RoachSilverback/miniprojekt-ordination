@@ -26,9 +26,9 @@ public class DagligSkæv : Ordination {
 		List<Dosis> doserList = doser;
 		double doserSum = 0;
 		foreach(Dosis doser in doserList){
-			doserSum = doserSum + doser.antal;
+			doserSum += doser.antal;
 		}
-        return doserSum;
+        return doserSum / base.antalDage();
 	}
 
 	public override String getType() {
