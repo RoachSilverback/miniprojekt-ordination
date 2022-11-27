@@ -131,7 +131,8 @@ public class DataService
     }
 
     public PN OpretPN(int patientId, int laegemiddelId, double antal, DateTime startDato, DateTime slutDato) {
-        // TODO: Implement!
+        db.Ordinationer.Add(new PN(startDato, slutDato, antal, db.Laegemiddler.Find(laegemiddelId)));
+        db.SaveChanges();
         return null!;
     }
 
@@ -139,17 +140,18 @@ public class DataService
         double antalMorgen, double antalMiddag, double antalAften, double antalNat, 
         DateTime startDato, DateTime slutDato) {
 
-        // TODO: Implement!
+        db.Ordinationer.Add(new DagligFast(startDato, slutDato, db.Laegemiddler.Find(laegemiddelId), antalMorgen, antalMiddag, antalAften, antalNat));
+        db.SaveChanges();
         return null!;
     }
 
     public DagligSkæv OpretDagligSkaev(int patientId, int laegemiddelId, Dosis[] doser, DateTime startDato, DateTime slutDato) {
-        // TODO: Implement!
+        db.Ordinationer.Add(new DagligSkæv(startDato, slutDato, db.Laegemiddler.Find(laegemiddelId), doser));
+        db.SaveChanges();
         return null!;
     }
 
     public string AnvendOrdination(int id, Dato dato) {
-        // TODO: Implement!
         var ordKontrol = db.PNs.FirstOrDefault(o => o.OrdinationId == id);
         if (ordKontrol.givDosis(dato) == true){
             ordKontrol.dates.Add(dato);
