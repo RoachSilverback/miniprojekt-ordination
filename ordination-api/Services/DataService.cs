@@ -131,7 +131,8 @@ public class DataService
     }
 
     public PN OpretPN(int patientId, int laegemiddelId, double antal, DateTime startDato, DateTime slutDato) {
-        db.Ordinationer.Add(new PN(startDato, slutDato, antal, db.Laegemiddler.Find(laegemiddelId)));
+        var sickman = db.Patienter.FirstOrDefault(s => s.PatientId == patientId);
+        sickman.ordinationer.Add(new PN(startDato, slutDato, antal, db.Laegemiddler.Find(laegemiddelId)));
         db.SaveChanges();
         return null!;
     }
@@ -139,14 +140,15 @@ public class DataService
     public DagligFast OpretDagligFast(int patientId, int laegemiddelId, 
         double antalMorgen, double antalMiddag, double antalAften, double antalNat, 
         DateTime startDato, DateTime slutDato) {
-
-        db.Ordinationer.Add(new DagligFast(startDato, slutDato, db.Laegemiddler.Find(laegemiddelId), antalMorgen, antalMiddag, antalAften, antalNat));
+        var sickman = db.Patienter.FirstOrDefault(s => s.PatientId == patientId);
+        sickman.ordinationer.Add(new DagligFast(startDato, slutDato, db.Laegemiddler.Find(laegemiddelId), antalMorgen, antalMiddag, antalAften, antalNat));
         db.SaveChanges();
         return null!;
     }
 
     public DagligSkæv OpretDagligSkaev(int patientId, int laegemiddelId, Dosis[] doser, DateTime startDato, DateTime slutDato) {
-        db.Ordinationer.Add(new DagligSkæv(startDato, slutDato, db.Laegemiddler.Find(laegemiddelId), doser));
+        var sickman = db.Patienter.FirstOrDefault(s => s.PatientId == patientId);
+        sickman.ordinationer.Add(new DagligSkæv(startDato, slutDato, db.Laegemiddler.Find(laegemiddelId), doser));
         db.SaveChanges();
         return null!;
     }
