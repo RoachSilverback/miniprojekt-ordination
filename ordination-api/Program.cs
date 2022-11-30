@@ -13,9 +13,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: AllowCors, builder => {
         builder.AllowAnyOrigin()
                .AllowAnyHeader()
-               .AllowAnyMethod();
+               .AllowAnyMethod()
+               .SetIsOriginAllowed(origin => true);
     });
 });
+
+
 
 // Tilføj DbContext factory som service.
 builder.Services.AddDbContext<OrdinationContext>(options =>
