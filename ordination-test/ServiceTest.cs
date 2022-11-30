@@ -39,6 +39,7 @@ public class ServiceTest
         2, 2, 1, 0, DateTime.Now, DateTime.Now.AddDays(3));
 
         Assert.AreEqual(2, service.GetDagligFaste().Count());
+        Assert.AreNotEqual(3, service.GetDagligFaste().Count());
     }
 
     [TestMethod]
