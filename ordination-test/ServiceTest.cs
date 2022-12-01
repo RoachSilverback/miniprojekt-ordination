@@ -58,6 +58,7 @@ public class ServiceTest
         DateTime.Now, DateTime.Now.AddDays(3));
         
         Assert.AreEqual(2, service.GetDagligSkæve().Count());
+        Assert.AreNotEqual (4, service.GetDagligSkæve().Count());
     }
 
     [TestMethod]

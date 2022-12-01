@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Service;
 using Data;
 using shared.Model;
-using static shared.Util;
 using System.Linq;
 
 [TestClass]
