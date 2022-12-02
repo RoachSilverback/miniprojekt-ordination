@@ -1,3 +1,4 @@
+/*
 namespace ordination_test;
 
 using shared.Model;
@@ -29,3 +30,4 @@ public class PatientTest
         Assert.AreEqual("Egon", patient.navn);
     }
 }
+*/
